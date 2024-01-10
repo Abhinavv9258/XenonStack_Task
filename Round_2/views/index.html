@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Project</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha512-+NqPlbbtM1QqiK8ZAo4Yrj2c4lNQoGv8P79DPtKzj++l5jnN39rHA/xsqn8zE9l0uSoxaCdrOgFs6yjyfbBxSg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <link rel="stylesheet" href="/style.css">
+</head>
+
+<body>
+    <h1>Welcome to Your Project</h1>
+    <a href="/login">Login</a><br/>
+    <a href="/register">Register</a><br/>
+    <a href="/contact">Contact</a><br/>
+
+    <section id="main">
+        <!-------typing------>
+        <div class="text">
+            <strong>
+                RailPatri <span class="type"></span>
+            </strong>
+            <p>WELCOME TO, RailPatri <br> ONLINE TICKET RESERVATION SYSTEM</p>
+            <a href="/login" class="btn">RailPatri</a>
+        </div>
+    </section>
+
+    <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
+    <script>
+        var typed = new Typed('.type', {
+            /// customize words and type-back speed
+            strings: ['Online Reservation', 'E-Ticket Booking', 'Website.'],
+            typeSpeed: 200,
+            backSpeed: 70,
+            loop: true,
+        });
+    </script>
+</body>
+</html>
