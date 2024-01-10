@@ -4,25 +4,25 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Round_1</title>
+    <title>Odyssey Routes</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"
-        integrity="sha512-+NqPlbbtM1QqiK8ZAo4Yrj2c4lNQoGv8P79DPtKzj++l5jnN39rHA/xsqn8zE9l0uSoxaCdrOgFs6yjyfbBxSg=="
-        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <link rel="stylesheet" href="/style.css">
     <style>
         body {
             margin: 0;
             padding: 0;
-            font-family: Arial, sans-serif;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f8f8f8;
+            color: #333;
         }
 
         .navbar {
             background-color: #333;
             overflow: hidden;
             width: 100%;
-            /* Set the width to 100% */
-
+            position: fixed;
+            top: 0;
+            z-index: 1000;
         }
 
         .navbar a {
@@ -57,13 +57,48 @@
                 float: left;
                 display: block;
             }
-        }
 
-        @media screen and (max-width: 600px) {
             .navbar.responsive a {
                 float: none;
                 display: block;
                 text-align: left;
+            }
+        }
+
+        section#main {
+            text-align: center;
+            margin-top: 80px;
+            padding: 50px;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .text {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .text strong {
+            font-size: 24px;
+            color: #4CAF50;
+        }
+
+        .type {
+            color: #333;
+        }
+
+        .sub-text{
+            color: #333 !important;
+        }
+
+        @media screen and (max-width: 768px) {
+            section#main {
+                padding: 30px;
+            }
+
+            .text strong {
+                font-size: 20px;
             }
         }
     </style>
@@ -80,25 +115,24 @@
         </a>
     </div>
 
-    <section id="main">
+    <section id="main" style="background-image: url('your-travel-image.jpg'); background-size: cover; background-position: center; color: #fff; text-align: center; padding: 50px 0;">
         <div class="text">
-            <strong>
-                RailPatri <span class="type"></span>
-            </strong>
-            <p>WELCOME TO, RailPatri <br> ONLINE TICKET RESERVATION SYSTEM</p>
+            <strong class="sub-text">Odyssey Routes</strong><br/>
+            <strong>Your Journey Begins with <span class="type"></span></strong>
+            <p class="sub-text">Explore the world hassle-free with Odyssey Routes <br> Your Destination for Seamless Travel Experience</p>
         </div>
     </section>
-
+    
     <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
     <script>
         var typed = new Typed('.type', {
-            /// customize words and type-back speed
-            strings: ['Online Reservation', 'E-Ticket Booking', 'Website.'],
+            strings: ['Adventurous Trips', 'Memorable Journeys', 'Exploration.'],
             typeSpeed: 200,
             backSpeed: 70,
             loop: true,
         });
     </script>
+    
 
     <script>
         function myFunction() {
