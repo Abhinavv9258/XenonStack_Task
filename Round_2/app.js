@@ -4,6 +4,8 @@ const bodyParser = require('body-parser');
 const session = require('express-session');
 const routes = require('./routes');
 const contactRoute = require('./routes/contactRoute');
+const dotenv = require('dotenv');
+dotenv.config();
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -22,8 +24,7 @@ app.use(session({
 
 
 // // MongoDB Connection
-const uri = "mongodb+srv://user:demo@cluster0.poliyjx.mongodb.net/odyssey_routes?retryWrites=true&w=majority";
-mongoose.connect(uri, { useNewUrlParser: true, useUnifiedTopology: true });
+mongoose.connect(process.env.MONGO_URL, { useNewUrlParser: true, useUnifiedTopology: true });
 
 var db = mongoose.connection;
 
