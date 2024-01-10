@@ -1,49 +1,45 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
-
-// const passport = require('passport');
-// const session = require('express-session');
-// const LocalStrategy = require('passport-local').Strategy;
-// const User = require('./models/user');
+const session = require('express-session');
+const routes = require('./routes');
+const contactRoute = require('./routes/contactRoute');
 
 const app = express();
 const PORT = process.env.PORT || 3000;
 
 
 // // Middleware
-app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(express.json());
 app.use(express.static('public'));
 app.use(express.urlencoded({ extended: true }));
-// app.use(session({ secret: 'your-secret-key', resave: true, saveUninitialized: true }));
-// app.use(passport.initialize());
-// app.use(passport.session());
-// app.use(express.static('public'));
+app.use(session({
+    secret: 'secret-key',
+    resave: false,
+    saveUninitialized: true,
+}));
 
 
 // // MongoDB Connection
-// mongoose.connect('mongodb://localhost:27017/myDB', { useNewUrlParser: true, useUnifiedTopology: true });
+const uri = "mongodb+srv://user:demo@cluster0.poliyjx.mongodb.net/odyssey_routes?retryWrites=true&w=majority";
+mongoose.connect(uri, { useNewUrlParser: true, useUnifiedTopology: true });
 
-// var db = mongoose.connection;
+var db = mongoose.connection;
 
-// mongoose.connection.on("disconnected", () => {
-//     console.log("MongoDB connection disconnected.");
-// });
+mongoose.connection.on("disconnected", () => {
+    console.log("MongoDB connection disconnected.");
+});
 
-// mongoose.connection.on("connected", () => {
-//     console.log("MongoDB connection connected.");
-// });
-
-// // Passport Configuration
-// passport.use(new LocalStrategy(User.authenticate()));
-// passport.serializeUser(User.serializeUser());
-// passport.deserializeUser(User.deserializeUser());
+mongoose.connection.on("connected", () => {
+    console.log("MongoDB connection connected.");
+});
 
 // Routes
-const indexRoutes = require('./routes/index');
-app.use('/', indexRoutes);
+app.use('/', routes);
+app.use('/contact', contactRoute);
 
 
 app.listen(PORT, () => {
-    console.log(`Server is running on http://localhost:${PORT}`);
+    console.log(`Server is running on port ${PORT}`);
 });

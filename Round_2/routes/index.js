@@ -1,8 +1,6 @@
 const express = require('express');
-// const passport = require('passport');
 const router = express.Router();
-// const User = require('../models/user');
-
+const { register, login, logout } = require('./controllers/userController');
 
 // Home Page
 router.get('/', (req, res) => {
@@ -20,39 +18,39 @@ router.get('/register', (req, res) => {
     res.sendFile('public/register.html', { root: __dirname + '/../' });
 });
 
-router.post('/register', (req, res) => {
+// router.post('/register', (req, res) => {
 
-    var name = req.body.name;
-    var email = req.body.email;
-    var username = req.body.username;
-    var password = req.body.password;
-    var phone_no = req.body.phone_no;
+//     var name = req.body.name;
+//     var email = req.body.email;
+//     var username = req.body.username;
+//     var password = req.body.password;
+//     var phone_no = req.body.phone_no;
 
-    var data = {
-        "name": name,
-        "email": email,
-        "username": username,
-        "password": password,
-        "phone_no": phone_no
-    }
+//     var data = {
+//         "name": name,
+//         "email": email,
+//         "username": username,
+//         "password": password,
+//         "phone_no": phone_no
+//     }
     
-    db.collection('users').insertOne(data,(err,collection) => {
-        if(err){
-            throw err;
-        }
-        console.log("Record Inserted Successfully.")
-    })
-    // User.register(new User({ username: req.body.username }), req.body.password, (err, user) => {
-    //     if (err) {
-    //         console.error(err);
-    //         return res.redirect('/register');
-    //     }
-    //     passport.authenticate('local')(req, res, () => {
-    //         res.redirect('/dashboard');
-    //     });
-    // });
-    return res.redirect('login.html');
-});
+//     db.collection('users').insertOne(data,(err,collection) => {
+//         if(err){
+//             throw err;
+//         }
+//         console.log("Record Inserted Successfully.")
+//     })
+//     // User.register(new User({ username: req.body.username }), req.body.password, (err, user) => {
+//     //     if (err) {
+//     //         console.error(err);
+//     //         return res.redirect('/register');
+//     //     }
+//     //     passport.authenticate('local')(req, res, () => {
+//     //         res.redirect('/dashboard');
+//     //     });
+//     // });
+//     return res.redirect('login.html');
+// });
 
 
 // Login Page
@@ -64,13 +62,12 @@ router.get('/login', (req, res) => {
 //     successRedirect: '/dashboard',
 //     failureRedirect: '/login'
 // }));
-
-
 // Logout
 // router.get('/logout', (req, res) => {
 //     req.logout();
 //     res.redirect('/');
 // });
+
 
 
 // Contact Us Page
@@ -92,11 +89,17 @@ router.get('/contact', (req, res) => {
 
 
 // Middleware to check if user is logged in
-function isLoggedIn(req, res, next) {
-    if (req.isAuthenticated()) {
-        return next();
-    }
-    res.redirect('/login');
-}
+
+// function isLoggedIn(req, res, next) {
+//     if (req.isAuthenticated()) {
+//         return next();
+//     }
+//     res.redirect('/login');
+// }
+
+
+router.post('/register', register);
+router.post('/login', login);
+router.get('/logout', logout);
 
 module.exports = router;
