@@ -57,26 +57,21 @@ get_file_info() {
     exit 1
   fi
 
-  shift # Move to the next argument
-
   # Check options
-  while [ "$#" -gt 0 ]; do
-    case $1 in
-      --size|-s) stat -c "%s" "$file" ;;
-      --permissions|-p) stat -c "%A" "$file" ;;
-      --owner|-o) stat -c "%U" "$file" ;;
-      --last-modified|-m) stat -c "%y" "$file" ;;
-      *)
-        # Default, display all information
-        echo "File: $file"
-        stat -c "Access: %A" "$file"
-        stat -c "Size(B): %s" "$file"
-        stat -c "Owner: %U" "$file"
-        stat -c "Modify: %y" "$file"
-        ;;
-    esac
-    shift # Move to the next option/argument
-  done
+  case $2 in
+    --size|-s) stat -c "%s" "$file" ;;                # Display file size
+    --permissions|-p) stat -c "%A" "$file" ;;         # Display file permissions
+    --owner|-o) stat -c "%U" "$file" ;;               # Display file owner
+    --last-modified|-m) stat -c "%y" "$file" ;;       # Display last modified time
+    *)
+      # Default, display all information
+      echo "File: $file"
+      stat -c "Access: %A" "$file"
+      stat -c "Size(B): %s" "$file"
+      stat -c "Owner: %U" "$file"
+      stat -c "Modify: %y" "$file"
+      ;;
+  esac
 }
 
 
@@ -105,4 +100,3 @@ case $1 in
     ;;
   *) echo "Unknown option: $1"; exit 1 ;;
 esac
-
