@@ -10,15 +10,29 @@ const bodyParser = require('body-parser');
 const app = express();
 const PORT = process.env.PORT || 3000;
 
-// // MongoDB Connection
-// mongoose.connect('mongodb://localhost/your-database-name', { useNewUrlParser: true, useUnifiedTopology: true });
 
 // // Middleware
-// app.use(express.urlencoded({ extended: true }));
+app.use(bodyParser.json());
+app.use(express.static('public'));
+app.use(express.urlencoded({ extended: true }));
 // app.use(session({ secret: 'your-secret-key', resave: true, saveUninitialized: true }));
 // app.use(passport.initialize());
 // app.use(passport.session());
 // app.use(express.static('public'));
+
+
+// // MongoDB Connection
+mongoose.connect('mongodb://localhost:27017/myDB', { useNewUrlParser: true, useUnifiedTopology: true });
+
+var db = mongoose.connection;
+
+mongoose.connection.on("disconnected", () => {
+    console.log("MongoDB connection disconnected.");
+});
+
+mongoose.connection.on("connected", () => {
+    console.log("MongoDB connection connected.");
+});
 
 // // Passport Configuration
 // passport.use(new LocalStrategy(User.authenticate()));
