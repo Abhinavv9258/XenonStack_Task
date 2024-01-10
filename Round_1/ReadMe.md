@@ -13,9 +13,25 @@
 
 ## Following are the screenshots from terminal using above custom commands
 
-![Screenshot from 2024-01-10 17-50-05](https://github.com/Abhinavv9258/XenonStack_Task/assets/79451162/0ad10b77-9679-4b29-b9e8-2bfa2d5a3a90)
+### Section A 
+
 ![Screenshot from 2024-01-10 17-49-38](https://github.com/Abhinavv9258/XenonStack_Task/assets/79451162/5066647c-91e2-4ede-baf5-66c30e21cf52)
-![Screenshot from 2024-01-10 17-55-48](https://github.com/Abhinavv9258/XenonStack_Task/assets/79451162/f38435d9-79db-4260-996f-e0dd203f1f19)
-![Screenshot from 2024-01-10 17-52-07](https://github.com/Abhinavv9258/XenonStack_Task/assets/79451162/6b033234-6e61-4cc4-8e79-3050746aad0f)
-![Screenshot from 2024-01-10 17-51-48](https://github.com/Abhinavv9258/XenonStack_Task/assets/79451162/92aa603b-7109-4fb6-acf3-aab5497778d8)
+
+
+![Screenshot from 2024-01-10 17-50-05](https://github.com/Abhinavv9258/XenonStack_Task/assets/79451162/0ad10b77-9679-4b29-b9e8-2bfa2d5a3a90)
+
+### Section B
+
+#### Part1 | Level Easy
 ![Screenshot from 2024-01-10 17-51-28](https://github.com/Abhinavv9258/XenonStack_Task/assets/79451162/f3600d27-f5fd-4327-be7e-933d0aeef39d)
+
+#### Part2 | Level Intermediate
+
+![Screenshot from 2024-01-10 17-51-48](https://github.com/Abhinavv9258/XenonStack_Task/assets/79451162/92aa603b-7109-4fb6-acf3-aab5497778d8)
+
+#### Part3 | Advanced Level
+
+![Screenshot from 2024-01-10 17-52-07](https://github.com/Abhinavv9258/XenonStack_Task/assets/79451162/6b033234-6e61-4cc4-8e79-3050746aad0f)
+
+
+![Screenshot from 2024-01-10 17-55-48](https://github.com/Abhinavv9258/XenonStack_Task/assets/79451162/f38435d9-79db-4260-996f-e0dd203f1f19)
