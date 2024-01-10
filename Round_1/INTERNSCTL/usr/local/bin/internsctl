@@ -1,0 +1,108 @@
+#!/bin/bash
+
+# internsctl - Custom Linux command for specific operations
+# Version: v0.1.0
+
+# Function to display help
+display_help() {
+  echo "Usage: internsctl [OPTIONS] [ARGUMENTS]"
+  echo ""
+  echo "Options:"
+  echo "  -h, --help            Display help and usage information."
+  echo "  -v, --version         Display the version information."
+  echo "  cpu getinfo           Get CPU information (similar to lscpu)."
+  echo "  memory getinfo        Get memory information (similar to free)."
+  echo "  user create <username>  Create a new user with login access."
+  echo "  user list              List all regular users."
+  echo "  user list --sudo-only  List users with sudo permissions."
+  echo "  file getinfo <file-name>                Get information about a file."
+  echo "  file getinfo [options] <file-name>      Get specific information about a file."
+  echo ""
+  echo "File Information Options:"
+  echo "  --size, -s            Print file size."
+  echo "  --permissions, -p     Print file permissions."
+  echo "  --owner, -o           Print file owner."
+  echo "  --last-modified, -m   Print last modified time."
+}
+
+# Function to display version
+display_version() {
+  echo "internsctl v0.1.0"
+}
+
+# Function to create a new user
+create_user() {
+  if [ -z "$1" ]; then
+    echo "Error: Missing username. Usage: internsctl user create <username>"
+    exit 1
+  fi
+  sudo useradd -m -s /bin/bash $1
+  echo "User '$1' created successfully."
+}
+
+# Function to list users
+list_users() {
+  if [ "$1" == "--sudo-only" ]; then
+    getent passwd {1000..60000} | cut -d: -f1,3 | awk -F: '$2 >= 1001'
+  else
+    getent passwd {1000..60000} | cut -d: -f1
+  fi
+}
+
+# Function to get file information
+get_file_info() {
+  file=$1
+  if [ ! -e "$file" ]; then
+    echo "Error: File '$file' not found."
+    exit 1
+  fi
+
+  shift # Move to the next argument
+
+  # Check options
+  while [ "$#" -gt 0 ]; do
+    case $1 in
+      --size|-s) stat -c "%s" "$file" ;;
+      --permissions|-p) stat -c "%A" "$file" ;;
+      --owner|-o) stat -c "%U" "$file" ;;
+      --last-modified|-m) stat -c "%y" "$file" ;;
+      *)
+        # Default, display all information
+        echo "File: $file"
+        stat -c "Access: %A" "$file"
+        stat -c "Size(B): %s" "$file"
+        stat -c "Owner: %U" "$file"
+        stat -c "Modify: %y" "$file"
+        ;;
+    esac
+    shift # Move to the next option/argument
+  done
+}
+
+
+# Main script starts here
+
+# Parse command line options
+case $1 in
+  -h|--help) display_help ;;
+  -v|--version) display_version ;;
+  cpu) shift; lscpu ;;
+  memory) shift; free -m ;;
+  user)
+    shift
+    case $1 in
+      create) shift; create_user $@ ;;
+      list) shift; list_users $@ ;;
+      *) echo "Unknown subcommand: $1"; exit 1 ;;
+    esac
+    ;;
+  file)
+    shift
+    case $1 in
+      getinfo) shift; get_file_info $@ ;;
+      *) echo "Unknown subcommand: $1"; exit 1 ;;
+    esac
+    ;;
+  *) echo "Unknown option: $1"; exit 1 ;;
+esac
+
