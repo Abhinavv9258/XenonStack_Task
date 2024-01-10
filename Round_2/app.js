@@ -22,17 +22,17 @@ app.use(express.urlencoded({ extended: true }));
 
 
 // // MongoDB Connection
-mongoose.connect('mongodb://localhost:27017/myDB', { useNewUrlParser: true, useUnifiedTopology: true });
+// mongoose.connect('mongodb://localhost:27017/myDB', { useNewUrlParser: true, useUnifiedTopology: true });
 
-var db = mongoose.connection;
+// var db = mongoose.connection;
 
-mongoose.connection.on("disconnected", () => {
-    console.log("MongoDB connection disconnected.");
-});
+// mongoose.connection.on("disconnected", () => {
+//     console.log("MongoDB connection disconnected.");
+// });
 
-mongoose.connection.on("connected", () => {
-    console.log("MongoDB connection connected.");
-});
+// mongoose.connection.on("connected", () => {
+//     console.log("MongoDB connection connected.");
+// });
 
 // // Passport Configuration
 // passport.use(new LocalStrategy(User.authenticate()));
